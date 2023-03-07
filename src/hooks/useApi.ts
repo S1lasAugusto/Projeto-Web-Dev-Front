@@ -5,26 +5,28 @@ const api = axios.create({
 });
 
 export const useApi = () => ({
-  validateToken: async (token: string) => {
-    return {
-      user: { id: 3, name: "Silas", email: "silasaugusto300@gmail.com" },
-    };
-    //const response = await api.post("/validate", { token });
-    // return response.data;
-
-  },
   signin: async (email: string, password: string) => {
     //Solicitação para o endpoint pra fazer login
-    //const response = await  api.post('/signin', {email, password});
-    return {
-      user: { id: 3, name: "Silas", email: "silasaugusto300@gmail.com" },
-      token: "123456789",
-    };
-    //return response.data;
+    const response = await api.post('/auth/login', { email, password });
+
+    if (response.data.success) {
+      api.defaults.headers["Authorization"] = `Bearer ${response.data.token}`;
+    }
+
+    return response.data;
   },
   logout: async () => {
-    return  {status: true}
-    //const response = await api.post("/logout");
-    //return response.data;
+    const response = await api.post("/auth/logout");
+    return response.data;
   },
+  getMovies: async () => {
+    const response = await api.get("/movie/getMovies", {
+      params: {
+        page: 1,
+        pageSize: 10
+      }
+    });
+
+    return response.data;
+  }
 });
