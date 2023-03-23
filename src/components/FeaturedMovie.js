@@ -14,7 +14,7 @@ export default ({item}) => {
     genres.push( item.genres[i].name );
   }
 
-  let description = item.overview;
+  let description = item.summary;
   if(description.length > 200) {
     description = description.substring(0, 200)+'...';
   }
@@ -23,13 +23,13 @@ export default ({item}) => {
     <section className="featured" style={{
       backgroundSize: 'cover',
       backgroundPosition: 'center',
-      backgroundImage: `url(https://image.tmdb.org/t/p/original${item.backdrop_path})`
+      backgroundImage: `url('https://image.tmdb.org/t/p/original${item.imagePath}')`
     }}>
       <div className="featured--vertical">
         <div className="featured--horizontal">
-          <div className="featured--name">{item.original_name}</div>
+          <div className="featured--name">{item.title}</div>
           <div className="featured--info">
-            <div className="featured--points">{item.vote_average} pontos</div>
+            <div className="featured--points">{item.voteAverage} pontos</div>
             <div className="featured--year">{firtsDate.getFullYear()}</div>
             <div className="featured--seasons">{item.number_of_seasons} temporada{item.number_of_seasons !== 1 ? 's' : ''}</div>
           </div>

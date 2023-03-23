@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useApi } from "../../hooks/useApi";
 import { User } from "../../Types/User";
 import { AuthContext } from "./AuthContext";
@@ -8,11 +8,22 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
   const [user, setUser] = useState<User | null>(null);
   const api = useApi();
 
+  useEffect(() => {
+    const validateToken = async () => {
+      const storageData = JSON.parse(localStorage.getItem("authToken")??"{}");
+      if (storageData) {
+        setUser(storageData.user);
+      }
+    };
+    validateToken();
+  }, []);
+
   const signin = async (email: string, password: string) => {
     const data = await api.signin(email, password);
     if (data.user && data.token) {
       setUser(data.user);
-      setToken(data.token);
+      console.log(data.user);
+      setAuthDataOnLocalStorage(data);
       return true;
     }
     return false;
@@ -21,11 +32,17 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
   const signout = async () => {
     await api.logout();
     setUser(null);
-    setToken('');
+    setAuthDataOnLocalStorage({});
   };
 
-  const setToken = (token: string) => {
-    localStorage.setItem("authToken", token);
+  const setAuthDataOnLocalStorage = (data: object) => {
+    if(data){
+      localStorage.setItem("authData", JSON.stringify(data));
+    }
+    else
+    {
+      localStorage.removeItem("authData")
+    }
   };
 
   return (

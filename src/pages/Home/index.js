@@ -18,13 +18,14 @@ export const Home = () => {
       setMovieList(list);
 
       // Pegando o Featured
-      // let originals = list.filter((i) => i.slug === "originals");
-      // let randomChosen = Math.floor(
-      //   Math.random() * (originals[0].items.results.length - 1)
-      // );
-      // let chosen = originals[0].items.results[randomChosen];
-      // let chosenInfo = await Tmdb.getMovieInfo(chosen.id, "tv");
-      // setFeaturedData(chosenInfo);
+      //let originals = list.filter((i) => i.slug === "originals");
+      console.log(list);
+      let randomChosen = Math.floor(
+         Math.random() * (list[0].items.length - 1)
+      );
+      let chosen = list[0].items[randomChosen];
+      //console.log(chosen);
+      setFeaturedData(chosen);
     };
 
     loadAll();
