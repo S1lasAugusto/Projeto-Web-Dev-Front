@@ -14,6 +14,11 @@ export const useApi = () => ({
     }
 
     return response.data;
+  },requestRegister: async (userName:string, email: string, password: string, userRole: string) => {
+    //TO-DO
+    //Mudar requisição para fazer requisoção de registro o post 
+    const response = await api.post('/account/register', { userName, email, password,userRole});
+    return response.status === 200;
   },
   logout: async () => {
     const response = await api.post("/auth/logout");

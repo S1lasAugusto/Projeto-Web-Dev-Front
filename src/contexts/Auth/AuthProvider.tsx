@@ -29,6 +29,12 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     return false;
   };
 
+  const requestRegister = async (userName: string,email: string, password: string, userRole: string) => {
+    const sucess = await api.requestRegister(userName,email,password,userRole);
+    return sucess;
+  };
+  
+  
   const signout = async () => {
     await api.logout();
     setUser(null);
@@ -46,7 +52,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, signin, signout }}>
+    <AuthContext.Provider value={{ user, signin, signout, requestRegister }}>
       {children}
     </AuthContext.Provider>
   );

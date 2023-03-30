@@ -11,7 +11,7 @@ export const Login = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  // botao de login 
   const handleLogin = async () => {
     if (email && password) {
       const isLogged = await auth.signin(email, password);
@@ -21,6 +21,10 @@ export const Login = () => {
         alert("Falha no login");
       }
     }
+  };
+    // Botao de cadastro 
+  const handleRegister = async () => {
+    navigate("/register");  
   };
 
   return (
@@ -50,9 +54,14 @@ export const Login = () => {
               placeholder="Digite sua senha"
             />
           </div>
+          
           <button className="btn-login" onClick={handleLogin}>
             Login
           </button>
+          <button className="btn-secondary" onClick={handleRegister}>
+            Create new account
+          </button>
+         
         </div>
       </div>
     </div>
