@@ -17,8 +17,8 @@ export default ({ black }) => {
       <div className="header--logo">
         <a href="/">
           <img
-            src="https://upload.wikimedia.org/wikipedia/commons/6/67/NewNetflixLogo.png"
-            alt="Netflix"
+            src="https://i.ibb.co/vc3MgvX/My-Movie-List.png"
+            alt="MyMovieList"
           />
         </a>
       </div>

@@ -59,8 +59,6 @@ export const Home = () => {
       </section>
 
       <footer>
-        Direitos de imagem para Netflix
-        <br />
         Dados pegos do site Themoviedb.org
       </footer>
 
