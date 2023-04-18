@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
 
   useEffect(() => {
     const validateToken = async () => {
-      const storageData = JSON.parse(localStorage.getItem("authToken")??"{}");
+      const storageData = JSON.parse(localStorage.getItem("authData") ?? "{}");
       if (storageData) {
         setUser(storageData.user);
       }

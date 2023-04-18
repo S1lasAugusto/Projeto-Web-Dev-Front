@@ -1,12 +1,18 @@
 /* eslint-disable import/no-anonymous-default-export */
-import React, { useState } from 'react';
+import { useState, useContext } from "react";
+import { AuthContext } from "../contexts/Auth/AuthContext"; 
 import './MovieRow.css';
+import { useNavigate } from "react-router-dom";
 
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 
-export default ({title, items}) => {
+
+
+export default ({title, items, handleMovieClick}) => {
   const [scrollX, setScrollX] = useState(0)
+  const navigate = useNavigate();
+  const auth = useContext(AuthContext);
 
   const handleLeftArrow = () => {
       let x = scrollX + Math.round(window.innerWidth / 2);
@@ -40,7 +46,7 @@ export default ({title, items}) => {
           width: items.length * 150
         }}>
           {items.length > 0 && items.map((item, key) => (
-          <div key={key} className="movieRow--item">
+          <div key={key} className="movieRow--item" onClick={() => handleMovieClick(item)}>
               <img src={`https://image.tmdb.org/t/p/w300${item.imagePath}`} alt={item.title} key={key} />
           </div>
         ))}

@@ -1,15 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "../../App.css";
+import { AuthContext } from "../../contexts/Auth/AuthContext";
 import { useHomeList } from "../../hooks/Tmdb";
 import MovieRow from "../../components/MovieRow";
 import FeaturedMovie from "../../components/FeaturedMovie";
 import Header from "../../components/Header";
+import { useNavigate } from "react-router-dom";
 
 export const Home = () => {
   const [movieList, setMovieList] = useState([]);
   const [featuredData, setFeaturedData] = useState(null);
   const [blackHeader, setBlackHeader] = useState(false);
   const getMovieList = useHomeList;
+  const navigate = useNavigate();
+
+  const handleMovieClick = async (item) => {
+    localStorage.setItem('movieSelected', JSON.stringify(item));
+    navigate('/movieDetails');
+  };
+  
 
   useEffect(() => {
     const loadAll = async () => {
@@ -54,7 +63,7 @@ export const Home = () => {
 
       <section className="lists">
         {movieList.map((item, key) => (
-          <MovieRow key={key} title={item.title} items={item.items} />
+          <MovieRow key={key} title={item.title} items={item.items} handleMovieClick={handleMovieClick} />
         ))}
       </section>
 

@@ -37,3 +37,35 @@ header.black {
   height: 100%;
   border-radius: 3px;
 }
+
+.header--user {
+  display: flex;
+  align-items: center;
+}
+
+.header--buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.header--buttons button {
+  background-color: transparent;
+  color: white;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid white;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.header--buttons button:hover {
+  background-color: white;
+  color: black;
+}
+
+
+
+

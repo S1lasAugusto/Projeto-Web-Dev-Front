@@ -52,6 +52,12 @@ export const Login = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Digite sua senha"
+              ref={input => input && input.focus()}
+              onKeyDown={event => {
+                if (event.key === 'Enter') {
+                  handleLogin();
+                }
+              }}
             />
           </div>
           

@@ -21,14 +21,16 @@ export const useApi = () => ({
     return response.status === 200;
   },
   logout: async () => {
-    const response = await api.post("/auth/logout");
-    return response.data;
+    //const response = await api.post("/auth/logout");
+    //console.log(response.data)
+   // return response.data;
+   return true
   },
   getMovies: async () => {
     const response = await api.get("/movie/getMovies", {
       params: {
         page: 1,
-        pageSize: 10
+        pageSize: 50
       }
     });
 

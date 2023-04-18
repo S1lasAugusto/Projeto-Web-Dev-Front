@@ -3,6 +3,7 @@ import React from "react";
 import { useContext } from "react";
 import "./Header.css";
 import { AuthContext } from "../contexts/Auth/AuthContext";
+import { Link } from "react-router-dom";
 
 export default ({ black }) => {
   const auth = useContext(AuthContext);
@@ -24,13 +25,8 @@ export default ({ black }) => {
       </div>
 
       <div className="header--user">
-        {auth.user && (
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"
-            alt="Perfil"
-          />
-        )}
-        <div className="header--user">
+        <div className="header--buttons">
+          {auth.user && <Link to="/profile"><button>Perfil</button></Link>}
           {auth.user && <button onClick={handleLogout}>Sair</button>}
         </div>
       </div>
